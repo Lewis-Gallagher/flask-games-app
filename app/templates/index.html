@@ -4,7 +4,16 @@
 {% block content %}
 
     <div class="container">
+        <h2>
+            {% if current_user.is_anonymous %} 
+            Welcome! 
+            {% else %} 
+            Hi, {{ current_user.username }}
+            {% endif %}
+        </h2>
+
         <h3>Popular Games</h3>
+
         <div>
             {{ macro.displayGameList(game_list)}}
         </div>
