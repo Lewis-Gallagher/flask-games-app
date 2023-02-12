@@ -1,0 +1,12 @@
+<!-- Displays list of games with cover art and title. -->
+{% macro displayGameList(game_list) %}
+    {% for game in game_list %}
+    <div class="col-xs-12 col-sm-4 col-md-2 col-lg-3 movie-card" style="margin-bottom: 15px;">
+        <a href = "/game/{{game.id}}"><img src="{{ 'https:' + game.cover.url.replace('t_thumb', 't_cover_big') }}" alt="{{ game.name }} poster" class="img-responsive">
+        <div class="text-center">
+            <a href="/game/{{game.id}}">
+                <h4>{{ game.name|truncate(20)}}</h4></a>
+        </div>
+    </div>    
+    {% endfor %}
+{% endmacro %}

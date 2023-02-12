@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Game Space</title>
+      {% else %}
+      <title>Welcome to Game Space</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Game Space: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

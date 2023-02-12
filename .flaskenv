@@ -1,0 +1,3 @@
+CLIENT_ID=ky55kui9h0pfabxkwh5r06w89lypqy
+CLIENT_SECRET=f38lw06lx4d6joz76rf1nfkqmu9cis
+FLASK_APP=gamespace.py
