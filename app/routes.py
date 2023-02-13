@@ -13,16 +13,34 @@ def index():
 
     access_token = request_token()
 
-    req = request_game(access_token=access_token,
+    # Access list of highest rated games. Not turly 'popular'.
+    popular_games = request_game(access_token=access_token,
                        endpoint='games',
                        filters='fields name,rating,cover.url; sort rating_count desc; where rating <= 100 & rating > 0;')
 
-    for game in req.games:
+    for game in popular_games.games:
         print(game.name, f'https://{game.cover.url.replace("t_thumb", "t_1080p")}')
     
         
     return render_template('index.html', title = "Welcome!",
-                           game_list = req.games)
+                           game_list = popular_games.games)
+
+
+@app.route('/game/<int:id>')
+def game(id):
+    """
+    Route for viewing a single game defined by ID.
+    """
+
+    access_token = request_token()
+
+    req = request_game(access_token=access_token,
+                        endpoint='games',
+                        filters=f'fields *; where id = {id};')
+    print(req.games[0].name)
+
+    return render_template('game.html', game = req.games[0],
+                           title = req.games[0].name)
 
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -85,4 +103,3 @@ def register():
         return redirect(url_for('index'))
     
     return render_template('register.html', title = 'Register', form = form)
-    

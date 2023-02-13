@@ -6,10 +6,6 @@ from igdb.wrapper import IGDBWrapper
 from igdb.igdbapi_pb2 import GameResult
 
 
-def wrap(access_token: str) -> IGDBWrapper:
-    
-    return 
-
 def request_token() -> str:
 
     # Set body for post request.

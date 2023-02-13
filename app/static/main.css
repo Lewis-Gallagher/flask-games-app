@@ -1,0 +1,36 @@
+body {
+    color: whitesmoke;
+    background-color:#202428;
+}
+
+.game-caption {
+    background-color:#22314b;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-top: 0px;    
+    font-size:x-small;
+}
+.game-caption a, a:link, a:visited, a:hover, a:active {
+    color: whitesmoke;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.game-card {
+    max-width: 20%;
+    max-height: 80%;
+    margin:auto;
+    margin-bottom: 5%;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.game-card img:hover{
+    transform: translateY(-5px);
+    box-shadow: none;
+    opacity: 0.9;
+}
+
+.scrolling-wrapper{
+	overflow-x: auto;
+}

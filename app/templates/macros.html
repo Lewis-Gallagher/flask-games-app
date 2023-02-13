@@ -1,12 +1,41 @@
 <!-- Displays list of games with cover art and title. -->
 {% macro displayGameList(game_list) %}
-    {% for game in game_list %}
-    <div class="col-xs-12 col-sm-4 col-md-2 col-lg-3 movie-card" style="margin-bottom: 15px;">
-        <a href = "/game/{{game.id}}"><img src="{{ 'https:' + game.cover.url.replace('t_thumb', 't_cover_big') }}" alt="{{ game.name }} poster" class="img-responsive">
-        <div class="text-center">
-            <a href="/game/{{game.id}}">
-                <h4>{{ game.name|truncate(20)}}</h4></a>
+    {% for row in game_list | batch(4) %}
+    <div class="row">
+        {% for game in row %}
+        <div id="game-card" class="col-md-4 game-card" tabindex="0">
+            <a href = "/game/{{game.id}}">
+                <div>
+                    <img src="{{ 'https:' + game.cover.url.replace('t_thumb', 't_cover_big') }}" alt="{{ game.name }} poster" style="width:100%;">
+                </div>
+                <div id="game-caption" class="text-center game-caption">
+                    <p>{{ game.name | truncate(30) }}</p>
+                    <p>{{ game.rating | round(1) }} / 100</p>
+                </div>
+            </a>
         </div>
+        {% endfor %}
     </div>    
+    {% endfor %}
+{% endmacro %}
+
+{% macro displayGameListScroll(game_list) %}
+<div class="container-fluid">
+    <h1 class="mt-5">Popular games</h1>
+    <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+            {% for game in game_list %}
+            <div id="game-card" class="game-card" tabindex="0">
+                <a href = "/game/{{game.id}}">
+                    <div>
+                        <img src="{{ 'https:' + game.cover.url.replace('t_thumb', 't_cover_big') }}" alt="{{ game.name }} poster" style="width:100%;">
+                    </div>
+                    <div id="game-caption" class="text-center game-caption">
+                        <p>{{ game.name | truncate(30) }}</p>
+                        <p>{{ game.rating | round(1) }} / 100</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 {% endmacro %}
